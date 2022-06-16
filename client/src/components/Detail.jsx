@@ -11,6 +11,7 @@ const Detail = (props)=>{
     useEffect(()=>{
         axios.get(`http://localhost:8080/api/pets/${id}`)
             .then(res=>{
+                console.log(res.data.results)
                 setPetInfo(res.data.results)
             })
             .catch(err=>console.log("err ", err))
@@ -36,7 +37,7 @@ const Detail = (props)=>{
                     <h5>Pet Type:</h5>
                     <h5>Description:</h5>
                     {
-                        petInfo.skill1 || petInfo.skill2 || petInfo.skill3?
+                        petInfo.skills?
                             <h5>Skills:</h5>:
                             ""
                     }
@@ -45,18 +46,10 @@ const Detail = (props)=>{
                     <h5>{petInfo.type}</h5>
                     <h5>{petInfo.description}</h5>
                     {
-                        petInfo.skill1?
-                            <h5>{petInfo.skill1}</h5>:
-                            ""
-                    }
-                    {
-                        petInfo.skill2?
-                            <h5>{petInfo.skill2}</h5>:
-                            ""
-                    }
-                    {
-                        petInfo.skill3?
-                            <h5>{petInfo.skill3}</h5>:
+                        petInfo.skills?
+                            petInfo.skills.map((skill) => 
+                                <h5>{skill}</h5>
+                            ):
                             ""
                     }
                 </div>

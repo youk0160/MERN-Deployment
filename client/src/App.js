@@ -1,9 +1,12 @@
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Main from './components/Main';
 import Form from './components/Form';
 import Edit from './components/Edit';
 import Detail from './components/Detail';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import Admin from './components/Admin';
 import {
   BrowserRouter,
   Routes,
@@ -14,17 +17,19 @@ import React from 'react';
 
 function App() {
   return (
-    <div className="container my-4">
+    <>
       <BrowserRouter>
         <Header/>
         <Routes>
           <Route path="/" element={<Main/>} />
-          <Route path="/pets/new" element={<Form/>} />
-          <Route path="/pets/:id" element={<Detail/>} />
-          <Route path="/pets/:id/edit" element={<Edit/>} />
+          <Route path="/request" element={<Form/>} />
+          <Route path="/serviceReqs" element={<Admin/>} />
+          <Route path="/serviceReqs/:id" element={<Detail/>} />
+          <Route path="/serviceReqs/:id/edit" element={<Edit/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
